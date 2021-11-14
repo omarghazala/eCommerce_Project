@@ -152,19 +152,20 @@ export class CheckoutComponent implements OnInit {
 
     let purchase = new Purchase();
 
-    purchase.customer = this.checkoutFormGroup.controls["customer"].value
+    purchase.customer = this.checkoutFormGroup.controls['customer'].value
 
-    purchase.shippingAddress=this.checkoutFormGroup.controls["shippingAddress"].value
-    const shippingAddressState: State = JSON.parse(JSON.stringify(purchase.shippingAddress.state)); 
-    const shippingAddressCountry:Country = JSON.parse(JSON.stringify(purchase.shippingAddress.country)); 
-    purchase.shippingAddress.state = shippingAddressState.name
-    purchase.shippingAddress.country = shippingAddressCountry.name
+    purchase.shippingAddress = this.checkoutFormGroup.controls['shippingAddress'].value;
+    const shippingState: State = JSON.parse(JSON.stringify(purchase.shippingAddress.state));
+    const shippingCountry: Country = JSON.parse(JSON.stringify(purchase.shippingAddress.country));
+    purchase.shippingAddress.state = shippingState.name;
+    purchase.shippingAddress.country = shippingCountry.name;
 
-    purchase.billingAddress=this.checkoutFormGroup.controls["billingAddress"].value
-    const billingAddressState: State = JSON.parse(JSON.stringify(purchase.billingAddress.state)); 
-    const billingAddressCountry:Country = JSON.parse(JSON.stringify(purchase.billingAddress.country)); 
-    purchase.shippingAddress.state = billingAddressState.name
-    purchase.shippingAddress.country = billingAddressCountry.name
+    // populate purchase - billing address
+    purchase.billingAddress = this.checkoutFormGroup.controls['billingAddress'].value;
+    const billingState: State = JSON.parse(JSON.stringify(purchase.billingAddress.state));
+    const billingCountry: Country = JSON.parse(JSON.stringify(purchase.billingAddress.country));
+    purchase.billingAddress.state = billingState.name;
+    purchase.billingAddress.country = billingCountry.name;
 
     purchase.order = order
     purchase.orderItems = orderItems
