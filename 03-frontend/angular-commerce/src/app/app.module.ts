@@ -16,18 +16,20 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShopFormService } from './services/shop-form.service';
 import { LoginComponent } from './components/login/login.component';
-import { OKTA_CONFIG, OktaAuthModule,OktaCallbackComponent, OktaAuthService } from '@okta/okta-angular';
+import { OKTA_CONFIG, OktaAuthModule,OktaCallbackComponent, OktaAuthService, OktaAuthGuard } from '@okta/okta-angular';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
 import myAppConfig from './config/my-app-config';
+import { MembersPageComponent } from './components/members-page/members-page.component';
 
 const oktaConfig = Object.assign({
-  onAuthRequired :(injector)=>{
+  onAuthRequired :(oktaAuth,injector)=>{
     const router = injector.get(Router);
     router.navigate(['/login']);
   }
 },myAppConfig.oidc)
 
 const routes : Routes = [
+  {path: 'members', component: MembersPageComponent, canActivate:[ OktaAuthGuard]},
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
   {path: 'checkout', component: CheckoutComponent},
@@ -51,7 +53,8 @@ const routes : Routes = [
     CartDetailsComponent,
     CheckoutComponent,
     LoginComponent,
-    LoginStatusComponent
+    LoginStatusComponent,
+    MembersPageComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
