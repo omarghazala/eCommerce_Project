@@ -13,7 +13,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[];
+  products: Product[]=[];
   currentCategoryId: number;
   previousCategoryId: number;
   searchMode:boolean;
@@ -34,6 +34,7 @@ export class ProductListComponent implements OnInit {
     this.route.paramMap.subscribe(() => {
       this.listProducts();
     });
+    console.log(this.products.length);
   }
 
   listProducts(){
@@ -90,7 +91,6 @@ export class ProductListComponent implements OnInit {
     } 
     this.previousCategoryId = this.currentCategoryId;
 
-    //console.log(`currentId=${this.currentCategoryId}, pageNumber=${this.thePageNumber}`, )
     this.productService.getProductListPaginate(this.thePageNumber-1,this.thePageSize,this.currentCategoryId).subscribe(
       this.processResult()
     )
@@ -113,7 +113,6 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(theProduct:Product){
-    //console.log(theProduct.name+" "+theProduct.unitPrice);
     const theCartItem = new CartItem(theProduct)
     this.cartService.addToCart(theCartItem)
   }

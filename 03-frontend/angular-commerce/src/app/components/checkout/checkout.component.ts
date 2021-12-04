@@ -75,18 +75,15 @@ export class CheckoutComponent implements OnInit {
 
     // populate months and years
     const startMonth:number = new Date().getMonth();
-    console.log(startMonth)
 
     this.shopFormService.getCreditCardMonths(startMonth).subscribe(
       data => {
-        console.log("card months : "+ JSON.stringify(data))
         this.creditCardMonths = data
       }
     )
 
     this.shopFormService.getCreditCardYears().subscribe(
       data => {
-        console.log("card years : "+ JSON.stringify(data))
         this.creditCardYears = data
       }
     )
@@ -169,7 +166,6 @@ export class CheckoutComponent implements OnInit {
 
     purchase.order = order
     purchase.orderItems = orderItems
-    console.log(purchase)
     this.checkoutService.placeOrder(purchase).subscribe(
       {
         next: response=>{
@@ -215,7 +211,6 @@ export class CheckoutComponent implements OnInit {
 
     this.shopFormService.getCreditCardMonths(startMonth).subscribe(
       data => {
-        console.log("card months : "+ JSON.stringify(data))
         this.creditCardMonths = data
       }
     )

@@ -10,6 +10,7 @@ public class PurchaseResponse {
     public PurchaseResponse(){}
 
     public PurchaseResponse(String orderTrackingNumber) {
+
         this.orderTrackingNumber = orderTrackingNumber;
     }
 }
