@@ -210,7 +210,7 @@ section{
 }
 
 .au-input-xl{
-    min-width:935px
+    min-width:500px
 }
 
 input.au-input.au-input-xl{
@@ -691,8 +691,13 @@ table.table.table-bordered{
     border:1px solid #ccc;
     background:#fff
 }
-.table-bordered tr td,.table-bordered tr th{
-    border:1px solid #dee2e6
+.table-bordered tr th{
+    border:1px solid #dee2e6;
+}
+
+.table-bordered tr td{
+    border:1px solid #dee2e6;
+    padding: 7px;
 }
 /* .table-bordered tr td a{
     background:#0da8e4;

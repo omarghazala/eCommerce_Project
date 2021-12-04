@@ -1,9 +1,6 @@
 package com.oghazala.ecommerce.config;
 
-import com.oghazala.ecommerce.entity.Country;
-import com.oghazala.ecommerce.entity.Product;
-import com.oghazala.ecommerce.entity.ProductCategory;
-import com.oghazala.ecommerce.entity.State;
+import com.oghazala.ecommerce.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -34,13 +31,15 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         RepositoryRestConfigurer.super.configureRepositoryRestConfiguration(config, cors);
-        HttpMethod[] theUnsupportedActions = {HttpMethod.POST,HttpMethod.PUT,HttpMethod.DELETE};
+        HttpMethod[] theUnsupportedActions = {HttpMethod.POST,HttpMethod.PUT,
+                                                HttpMethod.DELETE,HttpMethod.PATCH};
 
         // disbale http methods for PUT,UPDATE,DELETE
         disableHttpMethods(Product.class,config, theUnsupportedActions);
         disableHttpMethods(ProductCategory.class,config, theUnsupportedActions);
         disableHttpMethods(Country.class,config, theUnsupportedActions);
         disableHttpMethods(State.class,config, theUnsupportedActions);
+        disableHttpMethods(Order.class,config, theUnsupportedActions);
 
         // expose ids
         exposeIds(config);
