@@ -49,7 +49,7 @@ export class CheckoutComponent implements OnInit {
       customer: this.formBuilder.group({
         firstName:new FormControl('',[Validators.required,Validators.minLength(2),ShopValidators.noOnlyWhiteSpaces]),
         lastName:new FormControl('',[Validators.required,Validators.minLength(2),ShopValidators.noOnlyWhiteSpaces]),
-        email:new FormControl(email,[Validators.required,
+        email:new FormControl({value:email,disabled:true},[Validators.required,
           Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
       shippingAddress : this.formBuilder.group({
@@ -156,7 +156,6 @@ export class CheckoutComponent implements OnInit {
     let purchase = new Purchase();
 
     purchase.customer = this.checkoutFormGroup.controls['customer'].value
-    console.log(purchase.customer);
 
     purchase.shippingAddress = this.checkoutFormGroup.controls['shippingAddress'].value;
     const shippingState: State = JSON.parse(JSON.stringify(purchase.shippingAddress.state));

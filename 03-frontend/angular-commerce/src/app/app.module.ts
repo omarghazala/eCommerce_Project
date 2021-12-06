@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from  '@angular/common/http';
+import { HttpClientModule } from  '@angular/common/http';
 import { ProductService } from './services/product.service';
 import { Routes, RouterModule, Router} from '@angular/router';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
@@ -22,7 +22,6 @@ import myAppConfig from './config/my-app-config';
 import { MembersPageComponent } from './components/members-page/members-page.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { OrderHistoryService } from './services/order-history.service';
-import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 const oktaConfig = Object.assign({
   onAuthRequired :(oktaAuth,injector)=>{
@@ -75,8 +74,7 @@ const routes : Routes = [
     CartService,
     ShopFormService,
     OktaAuthService,
-    {provide:OKTA_CONFIG,useValue:oktaConfig},
-    {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}
+    {provide:OKTA_CONFIG,useValue:oktaConfig}
   ],
   bootstrap: [AppComponent]
 })
