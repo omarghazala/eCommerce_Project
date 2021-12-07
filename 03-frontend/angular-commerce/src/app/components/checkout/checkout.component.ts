@@ -49,7 +49,7 @@ export class CheckoutComponent implements OnInit {
       customer: this.formBuilder.group({
         firstName:new FormControl('',[Validators.required,Validators.minLength(2),ShopValidators.noOnlyWhiteSpaces]),
         lastName:new FormControl('',[Validators.required,Validators.minLength(2),ShopValidators.noOnlyWhiteSpaces]),
-        email:new FormControl({value:email,disabled:true},[Validators.required,
+        email:new FormControl(email,[Validators.required,
           Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
       shippingAddress : this.formBuilder.group({
