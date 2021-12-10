@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../common/product';
 import { map } from 'rxjs/operators';
 import { ProductCategory } from '../common/product-category';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ import { ProductCategory } from '../common/product-category';
 export class ProductService {
   
 
-  private baseUrl = 'http://localhost:8080/api/products';
-  private categoryUrl = 'http://localhost:8080/api/productCategories';
+  private baseUrl = environment.ghazalashopApiUrl+'/products';
+  private categoryUrl = environment.ghazalashopApiUrl+'/productCategories';
 
   constructor(private httpClient: HttpClient) { 
 
