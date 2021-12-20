@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  ghazalashopApiUrl:"https://localhost:8443/api"
+  ghazalashopApiUrl:"https://localhost:8443/api",
+  stripePublishableKey: "pk_test_51K8XwnIBYRwYm5pOqiM9LldcBmmX7SutVWM7sE1mNwNd7D8tVTHtKx7XangoNScYHRztr1ITqbOXj8GvLgb7EVpY00EyBvSKij"
 };
 
 /*

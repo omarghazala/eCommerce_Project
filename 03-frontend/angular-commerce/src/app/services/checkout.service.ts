@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { PaymentInfo } from '../common/payment-info';
 import { Purchase } from '../common/purchase';
 
 @Injectable({
@@ -10,7 +11,8 @@ import { Purchase } from '../common/purchase';
 export class CheckoutService {
 
   private purchaseUrl = environment.ghazalashopApiUrl+'checkout/purchase';
-  
+  private paymentIntentUrl = environment.ghazalashopApiUrl+'chheckout/payment-intent';
+
 
   constructor(private httpClient:HttpClient) { 
 
@@ -19,4 +21,10 @@ export class CheckoutService {
   placeOrder(purchase:Purchase):Observable<any>{
     return this.httpClient.post<Purchase>(this.purchaseUrl,purchase);
   }
+
+  createPaymentIntent(paymentInfo:PaymentInfo):Observable<any>{
+    return this.httpClient.post<PaymentInfo>(this.paymentIntentUrl,paymentInfo);
+  }
+
+
 }
