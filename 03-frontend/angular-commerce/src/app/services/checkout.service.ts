@@ -10,8 +10,8 @@ import { Purchase } from '../common/purchase';
 })
 export class CheckoutService {
 
-  private purchaseUrl = environment.ghazalashopApiUrl+'checkout/purchase';
-  private paymentIntentUrl = environment.ghazalashopApiUrl+'chheckout/payment-intent';
+  private purchaseUrl = environment.ghazalashopApiUrl+'/checkout/purchase';
+  private paymentIntentUrl = environment.ghazalashopApiUrl+'/checkout/payment-intent';
 
 
   constructor(private httpClient:HttpClient) { 
