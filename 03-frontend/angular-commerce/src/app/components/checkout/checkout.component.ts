@@ -42,6 +42,9 @@ export class CheckoutComponent implements OnInit {
   paymentInfo:PaymentInfo = new PaymentInfo();
   cardElement:any;
   displayError:any="";
+
+  isDisabled: boolean = false;
+
   constructor(private formBuilder:FormBuilder,
               private shopFormService:ShopFormService,
               private cartService:CartService,
@@ -209,18 +212,30 @@ export class CheckoutComponent implements OnInit {
     console.log(this.paymentInfo);
     // if valid form - create payment intent - confirm card payment - place order
     if (!this.checkoutFormGroup.invalid && this.displayError.textContent === "") {
-
+      this.isDisabled = true;
       this.checkoutService.createPaymentIntent(this.paymentInfo).subscribe(
         (paymentIntentResponse) => {
           this.stripe.confirmCardPayment(paymentIntentResponse.client_secret,
             {
               payment_method: {
-                card: this.cardElement
+                card: this.cardElement,
+                billing_details: {
+                  email: purchase.customer.email,
+                  name: `${purchase.customer.firstName} ${purchase.customer.lastName}`,
+                  address:{
+                    city: purchase.billingAddress.city,
+                    line1: purchase.billingAddress.street,
+                    postal_code: purchase.billingAddress.zipCode,
+                    state: purchase.billingAddress.state,
+                    country: this.billingAddressCountry.value.code
+                  }
+                }
               }
             }, { handleActions: false })
           .then(function(result) {
             if (result.error) {
               // inform the customer there was an error
+              this.isDisabled = false;
               alert(`There was an error: ${result.error.message}`);
             } else {
               // call REST API via the CheckoutService
@@ -230,9 +245,11 @@ export class CheckoutComponent implements OnInit {
 
                   // reset cart
                   this.resetCart();
+                  this.isDisabled = false;
                 },
                 error: err => {
                   alert(`There was an error: ${err.message}`);
+                  this.isDisabled = false;
                 }
               })
             }            
