@@ -1,5 +1,6 @@
 USE `full-stack-ecommerce`;
 
+
 SET foreign_key_checks = 0;
 
 --

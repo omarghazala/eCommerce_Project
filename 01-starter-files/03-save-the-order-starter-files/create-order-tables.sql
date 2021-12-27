@@ -2,6 +2,7 @@
 -- Schema full-stack-ecommerce
 -- -----------------------------------------------------
 
+
 USE `full-stack-ecommerce`;
 
 --
