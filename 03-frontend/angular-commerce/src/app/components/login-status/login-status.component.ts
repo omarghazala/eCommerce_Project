@@ -30,13 +30,17 @@ export class LoginStatusComponent implements OnInit {
         res =>{
           this.userFullName = res.name;
           const userEmail = res.email;
+          this.isAuthenticated = true;
           this.storage.setItem("email",JSON.stringify(userEmail));
+          this.storage.setItem("isAuthenticated",JSON.stringify(this.isAuthenticated));
         }
       )
     }
   }
 
   logout(){
+    this.isAuthenticated = false;
+    this.storage.setItem("isAuthenticated",JSON.stringify(this.isAuthenticated));
     this.oktaAuthService.signOut();
   }
 

@@ -44,6 +44,7 @@ export class CheckoutComponent implements OnInit {
   displayError:any="";
 
   isDisabled: boolean = false;
+  isAuthenticated: boolean = false;
 
   constructor(private formBuilder:FormBuilder,
               private shopFormService:ShopFormService,
@@ -58,6 +59,7 @@ export class CheckoutComponent implements OnInit {
     this.reviewCartDetails();
 
     const email = JSON.parse(this.storage.getItem('email'))
+    this.isAuthenticated = JSON.parse(this.storage.getItem('isAuthenticated'))
 
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
