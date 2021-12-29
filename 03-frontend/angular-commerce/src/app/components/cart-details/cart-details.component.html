@@ -53,7 +53,7 @@
                             <p>Shipping : FREE</p>
                             <p>Total Price : {{ totalPrice | currency: 'USD'  }}</p>
                             <div>
-                                <button routerLink='/checkout' class="btn btn-primary btn-sm mt-2">Checkout</button>
+                                <button  [routerLink]="isAuthenticated?'/checkout':'/login'" class="btn btn-primary btn-sm mt-2">Checkout</button>
                             </div>
                         </td>
                         
